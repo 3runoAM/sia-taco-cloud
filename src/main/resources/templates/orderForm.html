@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Taco Cloud</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+  <body>
+    <form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+      <h1>Finalize seu pedido:</h1>
+      <img th:src="@{/images/TacoCloud.png}"/>
+      <h3>Seus tacos:</h3>
+      <a th:href="@{/design}" id="another">Montar outro</a><br/>
+      <ul>
+        <li th:each="taco : ${tacoOrder.tacosOrdered}">
+          <span th:text="${taco.name}">Nomde do taco.</span><br/>
+        </li>
+      </ul>
+      <br>
+
+
+
+      <h3>Endereço de entrega:</h3>
+      <label for="deliveryName">Nome: </label>
+      <input type="text" th:field="*{deliveryName}"/>
+      <br/>
+      <label for="deliveryStreet">Endereço: </label>
+      <input type="text" th:field="*{deliveryStreet}"/>
+      <br/>
+      <label for="deliveryCity">Cidade: </label>
+      <input type="text" th:field="*{deliveryCity}"/>
+      <br/>
+      <label for="deliveryState">Estado: </label>
+      <input type="text" th:field="*{deliveryState}"/>
+      <br/>
+      <label for="deliveryZip">CEP: </label>
+      <input type="text" th:field="*{deliveryZip}"/>
+      <br/>
+      <h3>Forma de pagamento:</h3>
+      <label for="ccNumber">Cartão de crédito #: </label>
+      <input id="ccNumber" type="text" th:field="*{ccNumber}"/>
+      <br/>
+      <label for="ccExpiration">Validade: </label>
+      <input id="ccExpiration" type="text" th:field="*{ccExpiration}"/>
+      <br/>
+      <label for="CVV">CVV: </label>
+      <input id="CVV" type="text" th:field="*{CVV}"/>
+      <br/>
+      <input type="submit" value="Submit Order"/>
+  </form>
+  </body>
+</html>

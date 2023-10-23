@@ -1,0 +1,9 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 23rem;
+    width: 38rem;
+    justify-items: center;
+    justify-content: flex-start;
+}

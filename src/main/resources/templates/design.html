@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Taco Cloud</title>
+        <link rel="stylesheet" th:href="@{/styles.css}" />
+    </head>
+    <body>
+        <h1>Monte seu taco!</h1>
+        <img th:src="@{/images/TacoCloud.png}"/>
+        <form method="POST" th:object="${taco}">
+            <div class="grid">
+                <div class="ingredient-group" id="wraps">
+                    <h3>Escolha o seu wrap:</h3>
+                    <!--Essa lista foi setada no Model e copiada para as requisisções do Servlet). wrap é a chave para
+                    uma lista com os tipos de wraps. O th:each utilizado na div irá gerar o html dentro da div para cada
+                    item da lista Wrap-->
+                    <div  th:each="ingredient : ${wrap}">
+                        <!--th:value define o valor do checkbox para o id do ingrediente da vez na iteração-->
+                        <!--th:field vincula um campo de formulário na view a um atributo de objeto/a um objeto em si,
+                        assim quando o formulário for enviado os dados serão automaticamente preenchidos no atributo/ob-
+                        jeto.-->
+                        <input  type="checkbox" th:value="${ingredient.id}" th:field="*{ingredientsOrdered}" />
+                        <!--th:text substitui o texto placeholder - INGREDIENT -- pelo nome do ingrediente-->
+                        <span th:text="${ingredient.name}">WRAP</span><br/>
+                    </div><br>
+                </div>
+                <div class="ingredient-group" id="proteins">
+                    <h3>Escolha sua proteína:</h3>
+                    <div th:each="ingredient : ${protein}">
+                        <input type="checkbox" th:value="${ingredient.id}" th:field="*{ingredientsOrdered}">
+                        <span th:text="${ingredient.name}">PROTEÍNA</span>
+                    </div>
+                </div><br>
+                <div class="ingredient-group" id="veggies">
+                    <h3>Escolha seus vegetais:</h3>
+                    <div th:each="ingredient : ${veggies}">
+                        <input type="checkbox" th:value="${ingredient.id}" th:field="*{ingredientsOrdered}">
+                        <span th:text="${ingredient.name}">VEGETAL</span>
+                    </div>
+                </div><br>
+                <div class="ingredient-group" id="cheese">
+                    <h3>Escolha seu queijo:</h3>
+                    <div th:each="ingredient : ${cheese}">
+                        <input type="checkbox" th:value="${ingredient.id}" th:field="*{ingredientsOrdered}">
+                        <span th:text="${ingredient.name}">QUEIJO</span>
+                    </div>
+                </div><br>
+                <div class="ingredient-group" id="sauce">
+                    <h3>Escolha seu molho:</h3>
+                    <div th:each="ingredient : ${sauce}">
+                        <input type="checkbox" th:fiel="*{ingredientsOrdered}" th:value="${ingredient.id}">
+                        <span th:text="${ingredient.name}">MOLHO</span>
+                    </div>
+                </div><br>
+                </div>
+            </div>
+            <div>
+                <h3>Dê um nome ao seu taco:</h3>
+                <input type="text" th:field="*{name}">
+                <br>
+                <button>Enviar pedido</button>
+            </div>
+        </form>
+    </body>
+</html>
