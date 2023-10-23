@@ -7,3 +7,14 @@
     justify-items: center;
     justify-content: flex-start;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.validationError{
+    color: red;
+    font-weight: bold;
+}

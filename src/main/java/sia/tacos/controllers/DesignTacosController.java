@@ -3,9 +3,11 @@ package sia.tacos.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,6 +31,20 @@ uma lista de acontecimentos/mensagens sobre o funcionamento do sistema em tempo 
 tuada na seção entre diferentes requisições. Assim o usuário pode adicionar vários tacos ao pedido*/
 @SessionAttributes("tacoOrder")
 public class DesignTacosController {
+    @GetMapping
+    public String showDesignForm(){
+        return "design";
+    }
+
+    @PostMapping
+    public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        if (errors.hasErrors()) {
+            return "design";
+        }
+        tacoOrder.addTaco(taco);
+        log.info("Processando o taco: {}", taco);
+        return "redirect:/orders/current";
+    }
 
     /*Essa anotação indica que esse método deve ser executado antes de qualquer outro método de mapeamento, ele recebe
       uma instância de Model e a edita*/
@@ -59,6 +75,7 @@ public class DesignTacosController {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
     }
+
     /*Essa anotação indica que esse método deve ser executado antes de qualquer outro método de mapeamento e o retorno
     desse método deve ser adicionado ao Model como atributo sob nome passado em Name de tacoOrder*/
     @ModelAttribute(name = "tacoOrder")
@@ -72,20 +89,7 @@ public class DesignTacosController {
         return new Taco();
     }
 
-    // Método a ser chamado quando DesignTacosController receber uma requisição GET
-    @GetMapping
-    public String showDesignForm(){
-        return "design";
-    }
-
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredientsListed, Type typeToCompare){
         return ingredientsListed.stream().filter(x -> x.getType().equals(typeToCompare)).collect(Collectors.toList());
-    }
-
-    @PostMapping
-    public String processTaco(Taco taco, @ModelAttribute TacoOrder tacoOrder) {
-        tacoOrder.addTaco(taco);
-        log.info("Processando o taco: {}", taco);
-        return "redirect:/orders/current";
     }
 }
