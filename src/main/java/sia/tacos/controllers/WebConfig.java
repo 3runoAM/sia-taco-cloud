@@ -1,4 +1,4 @@
-package sia.tacos.tacos;
+package sia.tacos.controllers;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -12,4 +12,3 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
     }
 }
-

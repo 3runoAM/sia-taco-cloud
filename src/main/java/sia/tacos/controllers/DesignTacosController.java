@@ -26,7 +26,6 @@ uma lista de acontecimentos/mensagens sobre o funcionamento do sistema em tempo 
 
 /*Define que todas as requisições para /desing serão processadas por esse controller;*/
 @RequestMapping("/design")
-
 /*Marca o objeto TacoOrder -- Pedido de Taco -- como um atributo da seção fazendo com que o pedido continue sendo perpe-
 tuada na seção entre diferentes requisições. Assim o usuário pode adicionar vários tacos ao pedido*/
 @SessionAttributes("tacoOrder")
