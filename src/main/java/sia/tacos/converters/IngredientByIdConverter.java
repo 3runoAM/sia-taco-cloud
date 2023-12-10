@@ -1,4 +1,4 @@
-package sia.tacos.Converters;
+package sia.tacos.converters;
 
 import java.util.HashMap;
 import java.util.Map;

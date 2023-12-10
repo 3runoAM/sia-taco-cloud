@@ -1,4 +1,4 @@
-package sia.tacos.tacos;
+package sia.tacos;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
-import sia.tacos.tacos.Taco;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +16,6 @@ import java.util.List;
 @Entity
 public class TacoOrder implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
