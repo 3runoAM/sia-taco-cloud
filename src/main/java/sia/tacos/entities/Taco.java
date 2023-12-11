@@ -1,10 +1,10 @@
-package sia.tacos;
+package sia.tacos.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import sia.tacos.ingredients.Ingredient;
+import sia.tacos.entities.ingredients.Ingredient;
 
 import java.util.Date;
 import java.util.List;

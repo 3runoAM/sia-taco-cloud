@@ -1,4 +1,4 @@
-package sia.tacos.ingredients;
+package sia.tacos.entities.ingredients;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

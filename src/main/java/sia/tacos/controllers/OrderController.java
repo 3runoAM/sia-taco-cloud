@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.support.SessionStatus;
-import sia.tacos.tacos.TacoOrder;
+import sia.tacos.entities.TacoOrder;
 
 @Slf4j
 @Controller

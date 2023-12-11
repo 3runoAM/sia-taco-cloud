@@ -10,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sia.tacos.tacos.Ingredients.Ingredient;
-import sia.tacos.tacos.Ingredients.Type;
-import sia.tacos.tacos.TacoOrder;
-import sia.tacos.tacos.Taco;
+import sia.tacos.entities.ingredients.Ingredient;
+import sia.tacos.entities.ingredients.Type;
+import sia.tacos.entities.Taco;
+import sia.tacos.entities.TacoOrder;
 
 
 /* Anotação do Lombok usada para criar uma Simple Logging Facade for Java (SLF4J). Uma abstração de um Log, algo como

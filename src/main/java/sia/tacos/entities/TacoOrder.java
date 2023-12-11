@@ -1,4 +1,4 @@
-package sia.tacos;
+package sia.tacos.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import sia.tacos.entities.Taco;
 
 import java.io.Serializable;
 import java.util.ArrayList;

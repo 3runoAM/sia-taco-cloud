@@ -1,7 +1,7 @@
-package sia.tacos.reposiroty;
+package sia.tacos.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import sia.tacos.TacoOrder;
+import sia.tacos.entities.TacoOrder;
 
 import java.util.Date;
 import java.util.List;
