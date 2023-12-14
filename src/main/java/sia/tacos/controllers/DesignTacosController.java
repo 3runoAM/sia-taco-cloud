@@ -63,9 +63,9 @@ public class DesignTacosController {
                 new Ingredient("SLSA", "Molho de Tomate", Type.SAUCE),
                 new Ingredient("SRCR", "Creme Azedo", Type.SAUCE)
         );
-        /*Criamos uma lista que contém todo os valores de Type, ou seja, todos os tipos de ingredientes que existem*/
+        // Criamos uma lista que contém todo os valores de Type, ou seja, todos os tipos de ingredientes que existem
         Type[] types = Type.values();
-        /*Editamos o Model, adicionando atributos ao modelo. Para isso iteramos sobre a lista de tipos de ingredientes.
+        /* Editamos o Model, adicionando atributos ao modelo. Para isso iteramos sobre a lista de tipos de ingredientes.
         Cada tipo de ingrediente (WRAP, PROTEIN, VEGGIES) será um NOME DE ATRIBUTO no model e associado a cada nome de
          atributo teremos uma lista de ingrediente cadastrados, que é o retorno do método filterByType. Os atributos do
          model ficariam: "wrap": lista de wraps cadastrados [Flour Tortilla, Corn Tortilla] e assim por diante*/

@@ -8,7 +8,7 @@
     <body>
         <h1>Monte seu taco!</h1>
         <img th:src="@{/images/TacoCloud.png}"/>
-        <form method="POST" th:object="${taco}">
+        <form method="POST" action="/design" th:object="${taco}">
             <div class="grid">
                 <div class="ingredient-group" id="wraps">
                     <h3>Escolha o seu wrap:</h3>
@@ -22,9 +22,11 @@
                         jeto.-->
                         <input  type="checkbox" th:value="${ingredient.id}" th:field="*{ingredientsOrdered}" />
                         <!--th:text substitui o texto placeholder - INGREDIENT -- pelo nome do ingrediente-->
-                        <span th:text="${ingredient.name}">WRAP</span><br/>
-                    </div><br>
+                        <span th:text="${ingredient.name}">WRAP</span>
+                    </div>
+                    <br>
                 </div>
+
                 <div class="ingredient-group" id="proteins">
                     <h3>Escolha sua proteína:</h3>
                     <div th:each="ingredient : ${protein}">
@@ -58,6 +60,8 @@
             <div>
                 <h3>Dê um nome ao seu taco:</h3>
                 <input type="text" th:field="*{name}">
+                <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Erro de nome.</span>
+                <span class="validationError" th:if="${#fields.hasErrors('ingredientsOrdered')}" th:errors="*{ingredientsOrdered}">Erro de CEP.</span>
                 <br>
                 <button>Enviar pedido</button>
             </div>
