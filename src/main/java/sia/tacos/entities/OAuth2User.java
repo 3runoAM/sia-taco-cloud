@@ -1,20 +1,18 @@
-package sia.tacos.services;
+package sia.tacos.entities;
 
-import lombok.AllArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
-public class CustomOAuth2User implements OidcUser {
+public class OAuth2User implements OidcUser {
 
+    // Permite que acessemos todas as funcionalidades do OidcUser
     private OidcUser oidcUser;
 
     @Override
@@ -39,9 +37,7 @@ public class CustomOAuth2User implements OidcUser {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return authorities;
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
