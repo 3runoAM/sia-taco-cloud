@@ -15,11 +15,16 @@ import java.util.List;
 
 @Data // Anotação do Lombok que gera os métodos faltando (construtor, getters e setters, equals)
 @Entity
+@Table(name="Taco_Order")
 public class TacoOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    private Usuario usuario;
+
     private Date placedAt;
     @NotBlank(message="Você deve preencher esse campo.")
     private String deliveryName;

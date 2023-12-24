@@ -3,6 +3,13 @@ package sia.tacos.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.jdbc.datasource.embedded.DataSourceFactory;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,9 +26,13 @@ import sia.tacos.entities.Usuario;
 import sia.tacos.repositories.UserRepository;
 import sia.tacos.services.OAuth2UserService;
 
+import javax.sql.DataSource;
 import java.util.Optional;
 
+import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
+
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Autowired
@@ -45,10 +56,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(auth -> {
+        http
+        .authorizeHttpRequests(auth -> {
            auth.requestMatchers("/design/**", "/orders", "/orders/current").hasRole("USER")
                .requestMatchers("/", "/**").permitAll();
         })
+
         .formLogin(form -> form
             .loginPage("/login")
             .defaultSuccessUrl("/design"))
@@ -62,6 +75,7 @@ public class SecurityConfig {
         .logout(logout -> logout
             .logoutSuccessUrl("/")
         );
+
         return http.build();
     }
 
